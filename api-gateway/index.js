@@ -1,12 +1,16 @@
-const express = require('express');
-const app = express();
+const express = require("express");
+const gateWay = require("fast-gateway");
 const port = 8000;
-require('dotenv').config();
 
-app.use(express.json());
+const server = gateWay({
+  routes: [
+    {
+      prefix: "/user",
+      target: "http://localhost3000",
+    },
+  ],
+});
 
-
-
-app.listen(port, "localhost", ()=>{
-    console.log(`API Gateway running in http://localhost:${port}`);
-})
+server.start(port, () => {
+  console.log(`API Gateway running in http://localhost:${port}`);
+});
