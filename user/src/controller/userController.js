@@ -1,4 +1,4 @@
-const User = require("./../model/user");
+const User = require("./../models/user");
 const { Op } = require("sequelize");
 
 // posting user data
@@ -14,6 +14,15 @@ const userData = async (req,res) =>{
           } catch (error) {
             return res.status(500).send({ Message: error });
           }
+}
+//get all user data
+const userAllData = async (req,res) =>{
+  try {
+    const user = await User.findAll()
+        return res.status(200).send({ user, Message: "Users data fetched successfully" });
+  } catch (error) {
+    return res.status(500).send({ Message: error });
+  }
 }
 // updating user data
 const updateUserData = async (req,res) =>{
@@ -44,6 +53,7 @@ const deleteUser = async (req,res) =>{
 }
 module.exports ={
     userData,
+    userAllData,
     updateUserData,
     deleteUser
 }

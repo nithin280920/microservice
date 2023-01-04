@@ -1,27 +1,23 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../../config/dbConnection");
-const tableName = "users";
-const Users = sequelize.define(
-  "Users",
+const tableName = "orders";
+const Orders = sequelize.define(
+  "Orders",
   {
-    id: {
+    orderId: {
       type: Sequelize.STRING,
       primaryKey: true,
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4(),
     },
-    firstName: {
+    orderName: {
       type: Sequelize.STRING,
     },
-    lastName: {
-      type: Sequelize.STRING,
-    },
-    email: {
-      type: Sequelize.STRING,
-      unique: true,
+    userId: {
+        type: Sequelize.STRING,
     },
   },
   { tableName, updatedAt: false, createdAt: false }
 );
 
-module.exports = Users;
+module.exports = Orders;
